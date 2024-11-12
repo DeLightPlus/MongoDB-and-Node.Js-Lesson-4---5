@@ -1,0 +1,23 @@
+Create a RESTful API for Recipe App using Nodejs, Express and MongoDB.
+Requirements:
+  1. Data Model:
+  Define Mongoose Schema for collections.
+  2. API Endpoints:
+   - POST /url
+   - GET /url
+   - GET /url/:id
+   - DELETE /url/:id
+   - PUT /url/:id
+  3. Error handling:
+   - Handle errors gracefully
+   - Provide informative error messages to the client
+  4. Validate input data for:
+   - Required fields
+   - Data types (e.g., strings, numbers, arrays)
+   - Custom validation rules (e.g., email format, password strength).
+  5. Pagination:
+   - Implement pagination to efficiently handle large datasets.
+   - Allow users to specify the page number and page size.
+   - Return a total count of items and the current page information.
+  6. Testing:
+   - Use Postman or Insomnia to send HTTP requests and test the API endpoints.
