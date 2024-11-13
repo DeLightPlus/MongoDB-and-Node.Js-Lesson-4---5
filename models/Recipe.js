@@ -9,6 +9,6 @@ const recipeSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-const Recipe = mongoose.model('Recipe', recipeSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema); //Recipe => DatabaseName?!
 
 module.exports = Recipe;
