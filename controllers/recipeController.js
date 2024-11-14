@@ -1,14 +1,28 @@
 // controllers/recipeController.js
-const Recipe = require('../models/Recipe');
+const Recipe = require('../models/Recipe'); //the schema
 
 // Create a new recipe
-exports.createRecipe = async (req, res) => 
-{
+// exports.createRecipe = async (req, res) => 
+// {
+//   try 
+//   {
+//     const recipe = new Recipe(req.body);
+//     await recipe.save();
+//     res.status(201).json(recipe);
+//   } 
+//   catch (err) 
+//   {
+//     res.status(500).json({ message: 'Error creating recipe', error: err.message });
+//   }
+// };
+
+// Create a new recipe
+exports.createRecipe = async (req, res) => {
   try 
   {
-    const recipe = new Recipe(req.body);
-    await recipe.save();
-    res.status(201).json(recipe);
+    // Use Recipe.create to both create and save the recipe in one step
+    const recipe = await Recipe.create(req.body); // Create and save in one step
+    res.status(201).json(recipe); // Respond with the created recipe
   } 
   catch (err) 
   {
@@ -20,12 +34,14 @@ exports.createRecipe = async (req, res) =>
 exports.getAllRecipes = async (req, res) => 
 {
   const { page = 1, size = 10 } = req.query;
+  const skip = (page - 1) * size;
 
   try 
   {
     const recipes = await Recipe.find()
-      .skip((page - 1) * size)
+      .skip(skip)
       .limit(Number(size));
+      
     const totalRecipes = await Recipe.countDocuments();
     res.json({ recipes, totalRecipes, page, totalPages: Math.ceil(totalRecipes / size) });
   } 
@@ -86,3 +102,4 @@ exports.deleteRecipe = async (req, res) =>
     res.status(500).json({ message: 'Error deleting recipe', error: err.message });
   }
 };
+ 
