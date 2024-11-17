@@ -1,5 +1,7 @@
 // index.js
 const express = require('express');
+require('dotenv').config();
+
 const recipeRoutes = require('./routes/recipeRoutes');
 const connectDB = require('./config/db.js');
 
@@ -21,5 +23,5 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 8027;
+const PORT = process.env.PORT || 3027;
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`); });
