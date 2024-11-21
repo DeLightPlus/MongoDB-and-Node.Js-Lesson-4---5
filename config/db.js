@@ -1,17 +1,16 @@
 // config/db.js
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+const dbUrl = process.env.MONGO_URL; // replace with your database URL
 
 const connectDB = async () => {
   try 
   {
     // 
-    const connection = await mongoose.connect('mongodb://localhost:27017/recipeApp', 
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+    const connection = await mongoose.connect(dbUrl)
 
-    console.log(`MongoDB connected: ${connection.connection.host}`);
+    console.log(`MongoDB connected: ${connection.connection.host}`);    
   } 
   catch (err) 
   {
